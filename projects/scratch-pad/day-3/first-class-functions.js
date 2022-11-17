@@ -14,8 +14,11 @@
 function createGreaterThanFilter(base) {
     // YOUR CODE BELOW HERE //
     
-    
-    
+    // create function value
+    return function(value){
+        // return value > base
+        return (value > base)
+    }
     
     // YOUR CODE ABOVE HERE //
 }
@@ -27,6 +30,11 @@ function createGreaterThanFilter(base) {
  */
 function createLessThanFilter(base) {
     // YOUR CODE BELOW HERE //
+    // create function value
+    return function(value){
+        // return value < base
+        return (value < base)
+    }
     
     
     
@@ -41,7 +49,11 @@ function createLessThanFilter(base) {
  */
 function createStartsWithFilter(startsWith) {
     // YOUR CODE BELOW HERE //
-    
+    // return function
+    return function(string){
+        // test function
+       return (string.toLowerCase()[0] === startsWith.toLowerCase());
+    }
     
     
     
@@ -55,7 +67,11 @@ function createStartsWithFilter(startsWith) {
  */
 function createEndsWithFilter(endsWith) {
     // YOUR CODE BELOW HERE //
-    
+     // return function string
+     return function(string){
+        // test function
+        return (string[string.length -1].toLowerCase() === endsWith.toLowerCase());
+    }
     
     
     
@@ -72,7 +88,15 @@ function createEndsWithFilter(endsWith) {
 function modifyStrings(strings, modify) {
     // YOUR CODE BELOW HERE //
     
+    // create output variable
+    var modified = [];
+    // create for loop
+    for (var i = 0; i < strings.length; i++){
+        // use push method to pass each string through the modify function
+        modified.push(modify(strings[i]));
+    }
     
+    return modified;
     
     
     // YOUR CODE ABOVE HERE //
@@ -89,8 +113,16 @@ function modifyStrings(strings, modify) {
  */
 function allStringsPass(strings, test) {
     // YOUR CODE BELOW HERE //
-    
-    
+
+    // create for loop to iterate through strings
+    for (var i =0; i < strings.length; i++) {
+        // create if statement passing through test function
+        if(test(strings[i]) === false) {
+            // return false
+            return false;
+        } // return true
+    } 
+    return true;
     
     
     // YOUR CODE ABOVE HERE //

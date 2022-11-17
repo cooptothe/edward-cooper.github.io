@@ -69,8 +69,13 @@ function toUpperCase(string) {
  *
  *      See: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace#Using_global_and_ignore_with_replace()
  */
-function toDashCase(string) {
+ function toDashCase(string) {
     // YOUR CODE BELOW HERE //
+
+    // create new string and replace spaces with dashes
+    var newString3 = string.replaceAll(' ', '-') 
+    // return new string
+    return newString3.toLowerCase();
 
    
     // YOUR CODE ABOVE HERE //
@@ -91,7 +96,7 @@ function toDashCase(string) {
 function beginsWith(string, char) {
     // YOUR CODE BELOW HERE /
       //determine if string begins with char upper case or lower case 
- if (string[0] === char.toLowerCase() || char.UpperCase()){
+      if (string.toLowerCase()[0] === char.toLowerCase()){
    // return true
    return true;
  } // else return false
@@ -114,13 +119,16 @@ function beginsWith(string, char) {
  *      ensure uppercase and lowercase can be compared equally?
  */
 function endsWith(string, char) {
-    // YOUR CODE BELOW HERE //
-    // determine if sting ends with char
-    
-
-
-
-    // YOUR CODE ABOVE HERE //
+     // YOUR CODE BELOW HERE /
+      //determine if string ends with char upper case or lower case 
+      if (string[string.length -1].toLowerCase() === char.toLowerCase()){
+    // return true
+    return true;
+  } // else return false
+   else {
+    return false;
+  }
+     // YOUR CODE ABOVE HERE //
 }
 
 /**
@@ -130,6 +138,9 @@ function endsWith(string, char) {
  */
 function concat(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
+    // return two strings using +
+
+    return stringOne + stringTwo;
 
 
 
@@ -149,6 +160,9 @@ function concat(stringOne, stringTwo) {
 function join(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
     var args = Array.from(arguments);
+    // join arrays using .join()
+    return args.join("");
+
 
 
     // YOUR CODE ABOVE HERE //
@@ -165,6 +179,14 @@ function join(stringOne, stringTwo) {
  */
 function longest(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
+    // determine if stringOne is the longest word
+    if (stringOne.length > stringTwo.length){
+        // return stringOne
+        return stringOne;
+    } // determine if else
+    else {
+        return stringTwo;
+    }
 
 
 
@@ -178,13 +200,18 @@ function longest(stringOne, stringTwo) {
  *
  * TIP: How can we compare Strings? Is 'a' greater than or less than 'b'?
  */
-function sortAscending(stringOne, stringTwo) {
+ function sortAscending(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
-
-
-
+  if (stringOne < stringTwo){
+    return 1;
+  } else if (stringOne > stringTwo){
+    return -1;
+  } else {
+    return 0;
+  }
     // YOUR CODE ABOVE HERE //
 }
+
 
 
 /**
@@ -194,12 +221,15 @@ function sortAscending(stringOne, stringTwo) {
  *
  * TIP: How can we compare Strings? Is 'a' greater than or less than 'b'?
  */
-function sortDescending(stringOne, stringTwo) {
+ function sortDescending(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
-
-
-
-
+  if (stringOne > stringTwo){
+    return 1;
+  } else if (stringOne < stringTwo){
+    return -1;
+  } else {
+    return 0;
+  }
     // YOUR CODE ABOVE HERE //
 }
 

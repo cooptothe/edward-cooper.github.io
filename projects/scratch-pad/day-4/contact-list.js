@@ -35,7 +35,11 @@
 
 // YOUR CODE GOES BELOW HERE //
 function makeContact(id, nameFirst, nameLast) {
-
+    return {
+        id: id,
+    nameFirst: nameFirst,
+    nameLast: nameLast 
+    };
 } 
 
 
@@ -43,15 +47,54 @@ function makeContactList() {
     /*
      * You need something here to hold contacts. See length api for a hint:
      */
-    var contacts;
+    var contacts = [];
     
     return {
         // we implemented the length api for you //
         length: function() {
             return contacts.length;
-        }
+        }, 
+        addContact: function(contact){
+            contacts.push(contact)
+        }, 
+        findContact: function(fullName){ 
+            // create for loop to iterate through array
+            for(var i = 0; i < contacts.length; i++) {
+                // create if statement and declare variable fullName to equal nameFirst & nameLast
+                if(fullName === contacts[i].nameFirst + " " + contacts[i].nameLast){ 
+                    // return array
+                return contacts[i];
+            }
+
+            }
+
+        },
+        removeContact: function(contact){
+            // create a for loop to iterate through array
+            for(var i = 0; i < contacts.length; i++){
+                // create if statement to declare if parameter and array eqauls
+               if(contact.nameFirst + " " + contact.nameLast === contacts[i].nameFirst + " " + contacts[i].nameLast) {
+                // return array using splice method to remove contact
+            return contacts.splice(i, 1);
+               };
+            }
+        },
+        printAllContactNames: function(){
+            // create variable fullName
+          var fullName = [];
+           // create for loop to iterate through contacts
+            for (var i = 0; i < contacts.length; i++){
+            // push contact names into array
+            fullName.push(contacts[i].nameFirst + " " + contacts[i].nameLast);
+            };
+            // create variable to join array together using "\n"
+              var fullNameJoined = fullName.join("\n");
+              // return fullNameJoined
+              return fullNameJoined;
+            } 
+        } 
     }
-}
+
 
 
 

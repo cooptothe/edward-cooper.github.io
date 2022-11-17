@@ -17,9 +17,9 @@
  */
 function print(value) {
   // YOUR CODE BELOW HERE //
- 
+console.log(value);
 
-console.log(print('value'));
+
   
   // YOUR CODE ABOVE HERE //
 }

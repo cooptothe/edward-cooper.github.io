@@ -13,8 +13,22 @@
 function fizzBuzz() {
     // YOUR CODE GOES BELOW HERE //
 
-
-
+    // create for loop that counts from 0 to 100
+for (var i = 1; i <= 100; i++){
+    //  use if else statements to print fizzbuzz if multiple of both 5 & 3
+    if (i % 3 === 0 && i % 5 === 0){
+    console.log("FizzBuzz");
+    } // print buzz if *5
+     else if (i % 5 === 0){
+        console.log("Buzz");
+    } // print fizz if *3
+    else if (i % 3 === 0){
+        console.log("Fizz");}
+    // else just print number
+    else {
+        console.log(i);
+    }
+}
     // YOUR CODE GOES ABOVE HERE //
 }
 
