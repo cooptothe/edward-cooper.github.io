@@ -2,6 +2,9 @@
 // Function 1 - Object Values ////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+
+
+
 function objectValues(object) {
 let arrObj = [];
 for (var key in object){
@@ -16,7 +19,12 @@ return arrObj;
 
 function keysToString(object) {
 let outp = "";
-let 
+let arr = Object.keys(object);
+for (var i = 0; i <= arr.length - 2; i++){
+    outp = outp + arr[i] + " ";
+}
+outp += arr[arr.length - 1];
+return outp;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -24,7 +32,13 @@ let
 //////////////////////////////////////////////////////////////////////
 
 function valuesToString(object) {
-    
+    let outp = "";
+    let arr = Object.values(object);
+    for (var i = 0; i <= arr.length - 2; i++){
+    outp = outp + arr[i] + " ";
+}
+outp += arr[arr.length - 1];
+return outp;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -32,7 +46,11 @@ function valuesToString(object) {
 //////////////////////////////////////////////////////////////////////
 
 function arrayOrObject(collection) {
-    
+    if (Array.isArray(collection) === true){
+        return 'array';
+    } else {
+return 'object';
+    }
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -41,6 +59,7 @@ function arrayOrObject(collection) {
 
 function capitalizeWord(string) {
     
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -48,6 +67,10 @@ function capitalizeWord(string) {
 //////////////////////////////////////////////////////////////////////
 
 function capitalizeAllWords(string) {
+    let arr = string.split(" ");
+    for (var key in string){
+    return string.charAt(0).toUpperCase() + string.slice(1);
+    }
     
 }
 

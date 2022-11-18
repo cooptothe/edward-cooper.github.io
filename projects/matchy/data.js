@@ -91,11 +91,15 @@ console.log(animals.length);
 //////////////////////////////////////////////////////////////////////
 var friends = [];
 // i chose the array data structure because i can hold elements which can later be accessed
-function getRandom(animals){
+function getRandom(arr){
   // return random input using Math.random
-  return Math.floor(Math.random() * animals.length)
-
-}
+  return arr[Math.floor(Math.random() * (animals.length - 1))]
+} // invoke getRandomFunction
+console.log(getRandom(animals));
+// console log friends
+console.log(friends)
+// add friends to one of animals array using bracket notation
+duck['friends'] = friends;
 
 /**
  * Nice work! You're done Part 1. Pat yourself on the back and
