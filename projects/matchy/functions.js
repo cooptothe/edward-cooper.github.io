@@ -32,6 +32,7 @@ function replace(arr, str, obj){
 for (var i = 0; i < arr.length; i++){
     // create if statement too see if name matches animal
     if (str === arr[i].name){
+        // reassign array to equal obj
         arr[i] = obj; 
     }
 }
@@ -41,13 +42,34 @@ for (var i = 0; i < arr.length; i++){
 //////////////////////////////////////////////////////////////////////
 // Step 3 - Remove ///////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-
+function remove(arr, str){
+    // create for loop to look though array
+for (var i = 0; i < arr.length; i++){
+    // create if statement too see if str matches animal name
+    if (str === arr[i].name){
+        // use splice method to remove name
+        arr.splice(i, 1)
+    }
+}
+}
 
 
 //////////////////////////////////////////////////////////////////////
 // Step 4 - Add ///////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-
+function add(arr, obj){
+    // create for loop to iterate though array
+    for (var i = 0; i < arr.length; i++) {
+        // create if statement to check length of obj and to deterimine if it has a unique name
+        if (obj.name.length > 0 && obj.species.length > 0 && obj.name !== arr[i].name){
+            // use push method to add object
+          arr.push(obj);
+        } // return null if else
+        else {
+            return null;
+        }
+      }
+    }
 
 
 /**
