@@ -2,72 +2,147 @@
 // range ///////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function range() {
+function range(start, end, step=(start <= end)? 1: -1) {
+	let array = [];
+	
+	if (step > 0) {
+		// if step value is positive, ensure that start value must be lesser than or equal to end value 
+		if (start > end) {
+			return undefined;
+		}
+		for (let n = start; n <= end; n += step) {
+			array.push(n);
+		}
+	}
+	else if (step < 0) {
+		// if step value is negative, ensure that start value must be greater than or equal to end value 
+		if (start < end) {
+			return array;
+		}
 
+		for (let n = start; n >= end; n += step) {
+			array.push(n);
+		}
+	}
+	// If step value is 0, then return undefined.
+	else {
+		return undefined;
+	} // create loop that determines if the same numbers are given
+  for (let n = start; n === end; n += step) {
+    // assign array to empty array
+    array = [];
+  }
+	return array;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // sum /////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function sum() {
-
+function sum (arr){
+  let arrSum = 0;
+  for (let i = 0; i < arr.length; i++){
+  arrSum += arr[i];
+  }
+  return arrSum;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // reverseArray ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function reverseArray() {
-
+function reverseArray (arr){
+	let reversedArray = [];
+  let originalLength = arr.length - 1; 
+  for (let i = originalLength; i >= 0; i--){
+  	reversedArray.push(arr[i]);
+  }
+  return reversedArray;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // reverseArrayInPlace /////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function reverseArrayInPlace() {
-
-}
+function reverseArrayInPlace (arr) {
+	let originalLength = Math.floor(arr.length/2); 
+  
+ 	for (let i = 0, j = arr.length-1-i; i < originalLength; i++, j--){
+      	let swap = arr[i];
+  		arr[i] = arr[j];
+      arr[j] = swap;
+  } 
+  }
 
 ////////////////////////////////////////////////////////////////////////////////
 // arrayToList /////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function arrayToList() {
-
+function arrayToList(arr) {
+  let list = null;
+  for (let i = arr.length - 1; i >= 0; i--) {
+    list = {value: arr[i], rest: list};
+  }
+  return list;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // listToArray /////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function listToArray() {
-
+function listToArray (list){
+  let listArray = [];
+  //node begins as list; while node is not undefined; node becomes node.rest
+  //this moves from the outermost list to the innermost sublist
+  for (let node = list; node; node = node.rest){
+  	listArray.push(node.value);
+  }
+  return listArray;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // prepend /////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function prepend() {
-
+function prepend(value, list) {
+  return {value, rest: list};
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // nth /////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function nth() {
-
+function nth (list, num){
+	var listArray = listToArray(list);
+    return listArray[num];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // deepEqual ///////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function deepEqual() {
+function deepEqual(a, b) {
+  //first compare with triple equals to see if the two are the same type and value
+  if (a === b) return true;
+  //second if statement checks for null values and non-objects
+  if (a == null || typeof a != "object" ||
+      b == null || typeof b != "object")
+    return false;
+  //declare counters
+  var propsInA = 0, propsInB = 0;
+	//for-in loop counts the number of properties in a and b
+  for (var prop in a)
+    propsInA += 1;
 
+  for (var prop in b) {
+    propsInB += 1;
+    //if b has a prop not in a or if, upon recursive function all,
+    //the properties don't have the same values, return false
+    if (!(prop in a) || !deepEqual(a[prop], b[prop]))
+      return false;
+  }
+	//otherwise, return whether the number of properties are the same
+  return propsInA == propsInB;
 }
 
 ////////////////////////////////////////////////////////////////////////////////

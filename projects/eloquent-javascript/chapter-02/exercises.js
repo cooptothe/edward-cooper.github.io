@@ -3,23 +3,68 @@
 // triangles ///////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function triangles() {
-
+function triangles(val) {
+for (let i = "#"; i.length <= val; i += "#"){
+  console.log(i)
+}
 }
 ////////////////////////////////////////////////////////////////////////////////
 // fizzBuzz ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
 function fizzBuzz() {
-  
+   // create for loop that counts from 0 to 100
+for (var i = 1; i <= 15; i++){
+  //  use if else statements to print fizzbuzz if multiple of both 5 & 3
+  if (i % 3 === 0 && i % 5 === 0){
+  console.log("fizzbuzz");
+  } // print buzz if *5
+   else if (i % 5 === 0){
+      console.log("buzz");
+  } // print fizz if *3
+  else if (i % 3 === 0){
+      console.log("fizz");}
+  // else just print number
+  else {
+      console.log(i);
+  }
+}
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // drawChessboard //////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function drawChessboard() {
+function drawChessboard(num) {
+// create size variable
+let size = num;
+// create variable result as empty string
+let result = "";
+// while loop to create rows
+let row = 1;
+while (row <= size){
+// loop to create columns
+let column = 1;
+while (column <= size){
+  // if column plus row is even
+  if ((column + row) % 2 === 0){
+    // add space
+    result += " ";
+  // else
+  } else {
+    // add #
+    result += "#";
+  }
+  column += 1;
+}
+// add new line to end of current row
+result += ("\n");
+row += 1;
+}
 
+
+// log result to the console 
+console.log(result)
 }
 
 ////////////////////////////////////////////////////////////////////////////////

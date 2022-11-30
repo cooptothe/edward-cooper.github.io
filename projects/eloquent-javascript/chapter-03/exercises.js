@@ -2,32 +2,75 @@
 // min /////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function min() {
-
+function min(num1, num2) {
+  // use if else statements to determine which number is smaller
+if (num2 === num1){
+  // return num1 if equal
+  return num1;
+}
+else if (num1 < num2){
+  // return num1 if num1 is less than num2
+  return num1;
+}
+else if (num1 > num2){
+  // return num2 if num1 is greater than num2
+  return num2;
+}
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // isEven //////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function isEven() {
-
+function isEven(num) {
+  // if num is negative use Math.abs function to get absolute value to make it not negative
+  if (num < 0){
+    num = Math.abs(num);
+  } // if num = 0 return true
+ if (num === 0){
+  return true;
+} // if num = 1 return false
+else if (num === 1){
+  return false;
+} // invoke function and apply num - 2 to determine if num is even
+return isEven(num - 2);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // countChars //////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function countChars() {
-
+function countChars(str, char) {
+  // create output variable
+  let result = 0;
+  // loop through string
+  for (let i = 0; i < str.length; i++){
+    // determine if current character is equal to input character
+    if (str[i] === char){
+      // increment result plus 1
+      result = result += 1;
+    }
+    // return result
+  }
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // countBs /////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function countBs() {
-
+function countBs(str) {
+  // create output variable
+let result = 0;
+// loop through string
+for (let i = 0; i < str.length; i++){
+  // determine if current character is equal to B
+  if (str[i] === "B"){
+    // increment result plus 1
+    result = result += 1;
+  }
+  } // return result
+  return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
