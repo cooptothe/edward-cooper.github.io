@@ -125,7 +125,17 @@ _.last = function(arr, num){
 *   _.indexOf(["a","b","c"], "c") -> 2
 *   _.indexOf(["a","b","c"], "d") -> -1
 */
-
+_.indexOf = function(arr, val){
+    // iterate through arr
+    for (let i = 0; i < arr.length; i++){
+        // determine if index of arr is equal to val
+        if (arr[i] === val){
+            // return the index
+            return i;
+        }
+    }  // return -1 if val is not found
+return -1;
+}
 
 /** _.contains
 * Arguments:
@@ -141,7 +151,17 @@ _.last = function(arr, num){
 * Examples:
 *   _.contains([1,"two", 3.14], "two") -> true
 */
-
+_.contains = function(arr, val){
+    // iterate through arr using for loop
+    for (let i = 0; i < arr.length; i++){
+        // determine if array contains value using tenery operator
+        if ((arr[i] === val ? true: false)){
+            // return true
+            return true;
+        } 
+    } // return false if 
+    return false;
+}
 
 /** _.each
 * Arguments:
@@ -180,7 +200,20 @@ _.each = function (collection, func){
 * Examples:
 *   _.unique([1,2,2,4,5,6,5,2]) -> [1,2,4,5,6]
 */
-
+_.unique = function(arr){
+// create new array for output
+let newArr = [];
+// iterate through arr
+for (let i = 0; i < arr.length; i++){
+    // determine if index occurs in arr
+    if (_.indexOf(newArr, arr[i]) === -1){
+        
+        newArr.push(arr[i]);
+    }
+}
+// return new arr
+return newArr;
+}
 
 /** _.filter
 * Arguments:
@@ -197,7 +230,15 @@ _.each = function (collection, func){
 * Extra Credit:
 *   use _.each in your implementation
 */
-
+_.filter = function(arr, func){
+    let result = [];
+    for (let i = 0; i < arr.length; i++) {
+       if (func(arr[i], i, arr)) {
+          result.push(arr[i]);
+       }
+    }
+    return result;
+ };
 
 /** _.reject
 * Arguments:
@@ -211,7 +252,15 @@ _.each = function (collection, func){
 * Examples:
 *   _.reject([1,2,3,4,5], function(e){return e%2 === 0}) -> [1,3,5]
 */
-
+_.reject = function(arr, func){
+    let result = [];
+    for (let i = 0; i < arr.length; i++) {
+       if (!(func(arr[i], i, arr))) {
+          result.push(arr[i]);
+       }
+    }
+    return result;
+ };
 
 /** _.partition
 * Arguments:
@@ -231,6 +280,26 @@ _.each = function (collection, func){
 *   }); -> [[2,4],[1,3,5]]
 }
 */
+_.partition = function(arr, func){
+    // create output arrays for truthy and falsy
+    let truthy = []
+    let falsy = []
+    
+
+    // loop through array 
+    for (let i = 0; i < arr.length; ++i) {
+        // create variable for element
+      let value = arr[i];
+
+      // push the value into the appropriate array
+      if (func(value, i, arr)) {
+        truthy.push(value);
+      } else {
+        falsy.push(value);
+      }
+    }
+    return [truthy, falsy];
+  }
 
 
 /** _.map
@@ -248,7 +317,19 @@ _.each = function (collection, func){
 * Examples:
 *   _.map([1,2,3,4], function(e){return e * 2}) -> [2,4,6,8]
 */
-
+_.map = function(collection, func){
+    let result = [];
+    if (typeof collection === 'object'){
+        for (let key in collection){
+            result.push(func(collection[key], key, collection));
+        }
+    } else {
+    for (let i = 0; i < collection.length; i++) {
+       result.push(func(collection[i], i, collection));
+    }   
+}
+    return result;
+ };
 
 /** _.pluck
 * Arguments:
@@ -260,7 +341,13 @@ _.each = function (collection, func){
 * Examples:
 *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
 */
-
+_.pluck = function(arr, prop){
+    // iterate through array of objects using map
+    return _.map(arr, function(arr) {
+        // return array with prop value using bracket notation
+        return arr[prop];
+      });
+    }
 
 /** _.every
 * Arguments:
@@ -282,7 +369,52 @@ _.each = function (collection, func){
 *   _.every([2,4,6], function(e){return e % 2 === 0}) -> true
 *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
 */
-
+_.every = function(collection, func){
+    // if func is undefined
+        if (func === undefined ){
+            // determine if collection is array
+            if(Array.isArray(collection)){
+                // iterate through collections ising for loop
+                for (let i = 0; i < collection.length; i++){
+                    // determine if index is true
+                    if(!collection[i]){
+                        //return false;
+                        return false;
+                    }
+                }
+            } else { 
+                // else, iterate through object
+                for (let key in collection){
+                    // determine if key is true or false
+                    if(!collection[key]){
+                        // return false;
+                        return false;
+                    }
+                }
+            }
+        } else { 
+            // determine if collection is an array
+            if(Array.isArray(collection)){
+                // iterate through array
+                for(let i = 0; i < collection.length; i++){
+                    //determine if func false
+                    if(func(collection[i], i, collection) === false){
+                        return false;
+                    }
+                }
+            } else{ 
+                // iterate through object
+                for(let key in collection){
+                    //determine if func is false
+                    if(func(collection[key], key, collection) === false)
+                    {
+                        return false;
+                    }
+                }
+            }
+        }// return true
+        return true;
+         }
 
 /** _.some
 * Arguments:
@@ -304,7 +436,52 @@ _.each = function (collection, func){
 *   _.some([1,3,5], function(e){return e % 2 === 0}) -> false
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
-
+_.some = function(collection, func){
+    // if func is undefined
+        if (func === undefined ){
+            // determine if collection is array
+            if(Array.isArray(collection)){
+                // iterate through collections ising for loop
+                for (let i = 0; i < collection.length; i++){
+                    // determine if index is true
+                    if(collection[i] == true){
+                        //return true;
+                        return true;
+                    }
+                }
+            } else { 
+                // else, iterate through object
+                for (let key in collection){
+                    // determine if key is true or false
+                    if(collection[key] == true){
+                        // return true;
+                        return true;
+                    }
+                }
+            }
+        } else { 
+            // determine if collection is an array
+            if(Array.isArray(collection)){
+                // iterate through array
+                for(let i = 0; i < collection.length; i++){
+                    //determine if func true
+                    if(func(collection[i], i, collection) == true){
+                        return true;
+                    }
+                }
+            } else{ 
+                // iterate through object
+                for(let key in collection){
+                    //determine if func is true
+                    if(func(collection[key], key, collection) == true)
+                    {
+                        return true;
+                    }
+                }
+            }
+        }// return false
+        return false;
+         }
 
 /** _.reduce
 * Arguments:
@@ -324,7 +501,22 @@ _.each = function (collection, func){
 * Examples:
 *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
 */
-
+_.reduce = function(arr, func, seed){
+    let result;
+    if (seed === undefined){
+        result = arr[0];
+        for (let i = 1; i < arr.length; i++){
+            result = func(result, arr[i], i, arr)
+        }
+    } 
+    else {
+        result = seed;
+        for (let i = 0; i < arr.length; i++){
+            result = func(result, arr[i], i, arr)
+        }
+    }
+    return result;
+}
 
 /** _.extend
 * Arguments:
@@ -340,7 +532,18 @@ _.each = function (collection, func){
 *   _.extend(data, {b:"two"}); -> data now equals {a:"one",b:"two"}
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
-
+_.extend = function(obj) {  
+    //use for loop to iterate through arguments
+    for (let i = 1; i < arguments.length; i++) {
+        // use for in loop to iterate through keys of each index of arguments
+      for (let key in arguments[i]) {
+        // reassign object keys to equal arguments keys
+        obj[key] = arguments[i][key];
+      }
+    };
+            // return object
+    return obj;
+  }
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
