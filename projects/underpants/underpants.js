@@ -86,7 +86,7 @@ _.first = function(arr, num){
 *   1) If <array> is not an array, return []
 *   2) If <number> is not given or not a number, return just the last element in <array>.
 *   3) Otherwise, return the last <number> items of <array>
-* Edge Cases:
+* Edge Cases: 
 *   1) What if <number> is negative?
 *   2) What if <number> is greater than <array>.length?
 * Examples:
@@ -231,12 +231,16 @@ return newArr;
 *   use _.each in your implementation
 */
 _.filter = function(arr, func){
+    // create output array
     let result = [];
+    // iterate through array
     for (let i = 0; i < arr.length; i++) {
+        // determine if func is true
        if (func(arr[i], i, arr)) {
+        // push array index value into result
           result.push(arr[i]);
        }
-    }
+    } // return result
     return result;
  };
 
@@ -253,9 +257,13 @@ _.filter = function(arr, func){
 *   _.reject([1,2,3,4,5], function(e){return e%2 === 0}) -> [1,3,5]
 */
 _.reject = function(arr, func){
+    // create output array
     let result = [];
+    // iterate through array
     for (let i = 0; i < arr.length; i++) {
+        // determine if func is false
        if (!(func(arr[i], i, arr))) {
+        // push array index value into result
           result.push(arr[i]);
        }
     }
@@ -318,16 +326,22 @@ _.partition = function(arr, func){
 *   _.map([1,2,3,4], function(e){return e * 2}) -> [2,4,6,8]
 */
 _.map = function(collection, func){
+    // vreate output array
     let result = [];
+    // determine if collection is an object
     if (typeof collection === 'object'){
+        // iterate through keys
         for (let key in collection){
+            // push func into result
             result.push(func(collection[key], key, collection));
         }
-    } else {
+    } else { // if collection is array
+        //iterate through array
     for (let i = 0; i < collection.length; i++) {
+        // push func into result
        result.push(func(collection[i], i, collection));
-    }   
-}
+    }   // return result
+} 
     return result;
  };
 
@@ -502,19 +516,27 @@ _.some = function(collection, func){
 *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
 */
 _.reduce = function(arr, func, seed){
+    // creeate variable for result
     let result;
+    // determine if seed is undefined
     if (seed === undefined){
+        // reassign result to first index of array
         result = arr[0];
+        // iterate through array using for loop
         for (let i = 1; i < arr.length; i++){
+            // reassign result to equal func
             result = func(result, arr[i], i, arr)
         }
     } 
     else {
+        // determine if vault = seed
         result = seed;
+        // iterate through array
         for (let i = 0; i < arr.length; i++){
+            // reassign result to equal func
             result = func(result, arr[i], i, arr)
         }
-    }
+    } // return result
     return result;
 }
 

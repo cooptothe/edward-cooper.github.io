@@ -61,12 +61,13 @@ var youngestCustomer  = function(array){
 };;
 
 var averageBalance = function(array){
-
+    // use reduce on array
     let sum = _.reduce(array, function(accum, current){
-        return accum + current.balance.replace(/[$,]/g, '') ;
+        // return param divided by array length
+        return accum + current.balance.replace(/[$,]/g, '') / array.length ;
     }, 0);
-
-    return (sum / array.length);
+         /// return sum
+    return sum;
 };
 var firstLetterCount = function(array, letter){
     let counter = _.filter(array, function(customer){
@@ -105,17 +106,42 @@ var friendsCount = function(array, name){
 var topThreeTags = function(arr){
     // create output array
     let output = [];
-    // create object for 
+    // create object for all tags
     let tagMap = {};
+    // iterate through array using each
     _.each(arr, function(customer) {
+        // iterate through each tag using each
       _.each(customer.tags, function(tag) {
+        // for every tag in the array initialize its count to 0 and increment
         tagMap[tag] = (tagMap[tag] || 0) + 1; 
       });
-    });
-    let sortedArr;
+    }); 
+    // use map to sort through keys in ascending order
+    let arrSorted = _.map(Object.keys(tagMap), function(s){
+        return [s, tagMap[s]]
+        }).sort(function(a, b){
+            return a[1] - b[1];
+    })
+    output = arrSorted.slice(-3)
+    return output
 }
 
-var genderCount;
+function genderCount(arr) {
+    // use reduce on array
+    return _.reduce(arr, function(acc, curVal){
+        // determine if current value is male
+        if (curVal.gender === 'male') {
+            acc.male++;
+        } // determine if current value is female
+        else if (curVal.gender === 'female') {
+            acc.female++;
+        } // if else
+        else {
+            acc["non-binary"]++;
+        }
+        return acc;
+    }, {male: 0, female: 0, ["non-binary"]: 0});
+}
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
