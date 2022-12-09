@@ -90,7 +90,7 @@ var friendFirstLetterCount = function(array, customer, letter){
         return friendNames.length;
     }
    }
-        
+         
 }
 var friendsCount = function(array, name){
     // return the array filtered using filter method
@@ -112,19 +112,31 @@ var topThreeTags = function(arr){
     _.each(arr, function(customer) {
         // iterate through each tag using each
       _.each(customer.tags, function(tag) {
-        // for every tag in the array initialize its count to 0 and increment
-        tagMap[tag] = (tagMap[tag] || 0) + 1; 
+        // for every tag in the array increment + 1
+        if (tagMap[tag]){
+            tagMap[tag]++;
+        } else {
+            tagMap[tag] = 1;
+        }; 
       });
     }); 
-    // use map to sort through keys in ascending order
-    let arrSorted = _.map(Object.keys(tagMap), function(s){
-        return [s, tagMap[s]]
-        }).sort(function(a, b){
-            return a[1] - b[1];
-    })
-    output = arrSorted.slice(-3)
-    return output
-}
+    let max = 0;
+    let mostCommonTags = [];
+    // use for loop to iterate through keys 
+    for (let tag in tagMap) {
+        // determine if tagMap is greater than max
+      if (tagMap[tag] > max) {
+        // reassign max to equal tagMap
+        max = tagMap[tag];
+        // reassign mostCommonTags equal tag
+        mostCommonTags = [tag];
+      } // else push tag into array
+      else if (tagMap[tag] === max) {
+        mostCommonTags.push(tag);
+      }
+    } // return mostCommonTags array
+    return mostCommonTags;
+  }
 
 function genderCount(arr) {
     // use reduce on array
