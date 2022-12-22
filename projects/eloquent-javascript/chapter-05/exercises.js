@@ -44,24 +44,27 @@ function every(arr, test) {
 // dominantDirection ///////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////
 
-function dominantDirection(text) {
-    let writingDirections = countBy(text, char => {
-        // `char.codePointAt(0)` returns the Unicode code we can use it as an argument to find the script of the given character.
-        let script = characterScript(char.codePointAt(0));
-        return script ? script.direction : null;
-    }).filter(direction => direction.name !== null);
-    
-    // `writingDirections` is an empty array, `text` doesn't contain any characters belongs to any script specified in Unicode charset).
-    if (!writingDirections.length) {
-        return null;
-    }
-    else {
-        // `writingDirection` object which represents the dominant direction of the `text` is returned when we use reduce() on `writingDirections`.  
-        const {name: dominantDirection} = writingDirections.reduce((dominantDirection, writingDirection) => {
-            return (writingDirection.count > dominantDirection.count) ? writingDirection : dominantDirection;
-        });
+function dominantDirection(string) {
+    // create arrays to stroe ltr and rtl
+    let ltr = [];
+    let rtl = [];
 
-        return dominantDirection;
+    for (let i = 0; i < string.length; i++){
+      let script = characterScript(string.charCodeAt(i));
+
+      if (script !== null){
+        if (script.direction === 'ltr'){
+          ltr.push(script);
+        } else if (script.direction === 'rtl'){
+          rtl.push(script);
+        }
+      }
+    }
+
+    if (ltr.length > rtl.length){
+      return 'ltr';
+    } else {
+      return 'rtl';
     }
 }
 // /////////////////////////////////////////////////////////////////////////////
